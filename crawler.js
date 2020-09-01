@@ -18,27 +18,27 @@ var Crawler = {
 
 	},
 	getMovies: function(dados = []){
-		Crawler.request('http://www.imdb.com/chart/moviemeter', function(err, res, body){
+		Crawler.request('http://www.cbsk.com.br/ranking/2019/ranking-brasileiro-de-street-amador-2019/1796', function(err, res, body){
 			if(err)
 				console.log('Error: ' + err);
 			var $ = Crawler.cheerio.load(body);
-			$('.lister-list tr').each(function(){
-				var title  = $(this).find('.titleColumn a').text().trim();
-				var rating = $(this).find('.imdbRating strong').text().trim();
+			$('.wpb_text_column tr').each(function(){
+				var title  = $(this).find('td').text().trim();
+				//var rating = $(this).find('.imdbRating strong').text().trim();
 				//Crawler.fs.appendFile('imdb.txt', title + ' - ' + rating + '\n');
-				if(rating == ''){
-					rating = "sem avaliação"
-				}
-				var response = {title, rating}
+				// if(rating == ''){
+				// 	rating = "sem avaliação"
+				// }
+				var response = {title}//, rating}
 				dados.push(response)
 				
 			});
 		
-		
+			console.log(dados)
 
-			app.get('/', function(req, res){ 
-				return res.render('index', {dados: dados})
-			}) 
+			// app.get('/', function(req, res){ 
+			// 	return res.render('index', {dados: dados})
+			// }) 
 		});
 	}
 };
