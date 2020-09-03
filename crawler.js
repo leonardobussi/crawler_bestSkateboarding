@@ -18,22 +18,20 @@ var Crawler = {
 
 	},
 	getMovies: function(dados = []){
-		Crawler.request('site aqui', function(err, res, body){
+		Crawler.request('https://www.rankings.com.br/melhores-skatistas/', function(err, res, body){
 			if(err)
 				console.log('Error: ' + err);
 			var $ = Crawler.cheerio.load(body);
-			$('caminho até o container onde está as information').each(function(){
-				var nome  = $(this).find('caminho direto do nome').text().trim();
-				var colocacao = $(this).find('caminho direto da colocaçao').text().trim();
+			$('#mvp-content-body #mvp-content-main h2').each(function(){
+				var nome  = $(this).find('span').text().trim();
 				
-				var response = {nome, colocacao}
+				var response = {nome}
 				dados.push(response)
 				
 			});
 			
-		
-			console.log(dados)
-
+			dados.reverse()
+			console.log(dados)	
 			app.get('/', function(req, res){ 
 				return res.render('index', {dados: dados})
 			}) 

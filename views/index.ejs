@@ -8,14 +8,12 @@
     <title>spider maneiro</title>
 </head>
 <body>
-    
+  <h1 class="title" >Top 10 melhores skatistas de todos os tempos</h1>
   <div class="container">
-
     <div class="box">
         <% dados.forEach(i => {  %>
             <div data-aos="fade-up" class="card">
               <h3> <%= i.nome %></h3> 
-              <p><span>Colocação:</span> <i><%= i.colocacao %></i> </p>
             </div>
         <%}) %>
     </div>

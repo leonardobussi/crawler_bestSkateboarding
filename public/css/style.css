@@ -9,6 +9,11 @@ body{
     background-size: cover;
     background-position: center;
     background-attachment: fixed;
+    color: #fff;
+}
+.title{
+    text-align: center;
+    margin-top: 10px;
 }
 .container {
     display: flex;
@@ -22,12 +27,12 @@ body{
     width: 300px;
     height: 20%;
     background-color: rgb(19, 23, 255);
+    min-height: 50px;
     margin: 10px 0;
     padding: 5px 20px;
     border-radius: 5px;
     box-shadow: 0 .1rem 1rem rgba(0, 0, 0, 0.342)!important;
     color: white;
-    text-align: center;
 }
 .card:hover {
     box-shadow: 0px 0rem 0.5rem rgb(1, 5, 255)!important;
@@ -36,13 +41,4 @@ body{
     color: #fff;
     font-size: 24px;
     font-weight: 800;
-}
-.card p span {
-    color: #ccc;
-    font-size: 14px;
-}
-.card p i {
-    color: #2afa00;
-    font-weight: 800;
-    font-size: 16px;
 }
