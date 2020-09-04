@@ -1,10 +1,6 @@
-const express  = require('express');
-const app = express();
 
-app.set('view engine', 'ejs');
-app.set('views', 'views');
+const fs = require('fs');
 
-app.use(express.static('public'))
 
 var Crawler = {
 	request : null,
@@ -13,7 +9,7 @@ var Crawler = {
 	init : function(){
 		Crawler.request = require('request');
 		Crawler.cheerio = require('cheerio');
-		//Crawler.fs      = require('fs');
+		Crawler.fs      = require('fs');
 		Crawler.getMovies();
 
 	},
@@ -31,19 +27,17 @@ var Crawler = {
 			});
 			
 			dados.reverse()
-			console.log(dados)	
-			app.get('/', function(req, res){ 
-				return res.render('index', {dados: dados})
-			}) 
+
+			fs.writeFile('dados.json', JSON.stringify(dados, null, 2), err => {
+				if(err) throw new Error('deu ruim')
+
+				console.log('deu bom')
+			})
+
+			console.log(dados)	 
 		});
 	}
 };
 Crawler.init();
 
-app.listen(3000, (err) => {
-    if(err) {
-        console.log('==> [-]  falha na aplicação');
-    } else {
-        console.log('==> [+] aplicação funcionando ');
-    }
-});
+//module.exprts = Crawler.init()
